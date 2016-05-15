@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+
+    <title>IBM Singapore | Technical Exploration Center | Event Schedule</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style type="text/css">
+.clsDatePicker {
+    z-index: 100000;
+}
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+  
+</head>
+<body>
+  <!-- put this within head tag, this location creates a validation error -->
+
+<link rel='stylesheet' href='http://fullcalendar.io/js/fullcalendar-2.2.3/fullcalendar.css' />
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-12">
+      
+    <p><strong>IBM Singapore</strong> | Technical Exploration Center | Event Schedule
+    <br>
+
+    </p>
+    <hr>
+        <div id='calendar'></div>
+
+        <div id="fullCalModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                  <h4 id="modalTitle" class="modal-title"></h4>
+                  <input type="hidden" name="id" id="id"/>
+              </div>
+              <div id="modalBody" class="modal-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Venue:</label>
+                  </div>
+                  <div class="col-md-6">
+                    <span name="venue" id="venue"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Date:</label>
+                  </div>
+                  <div class="col-md-6">
+                    <span name="start" id="start"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Class Manager:</label>
+                  </div>
+                  <div class="col-md-6">
+                    <span name="classmanager" id="classmanager"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Business Unit:</label>
+                  </div>
+                  <div class="col-md-6">
+                    <span name="businessunit" id="businessunit"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Description:</label>
+                  </div>
+                  <div class="col-md-6">
+                    <span name="description" id="description"/>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="fullCalModal2" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content"><form id="ff" name="ff" method="post">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                  <h4 id="modalTitle" class="modal-title">Create Event</h4>
+              </div>
+              <div id="modalBody" class="modal-body">
+
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Event:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-control" type="text" name="title_" id="title_">
+                      <input type="hidden" name="id_" id="id_">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Venue:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <select name="venue_" id="venue_" class="form-control">
+                        <option value="TEC" data-subtext="Lorem ipsum Lorem ipsum" data-toggle="modal" data-target=".bs-example-modal-lg">TEC</option>
+                        <option value="PLM" data-subtext="Lorem ipsum Lorem ipsum" data-toggle="modal" data-target=".bs-example-modal-lg">PLM</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Date:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <span id="eventdate_"></span>
+                      <input type="hidden" name="start_" id="start_">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Class Manager:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-control" type="text" name="classmanager_" id="classmanager_">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Business Unit:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-control" type="text" name="businessunit_" id="businessunit_">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Description:</label>
+                    </div>
+                      <div class="col-md-6">
+                        <textarea class="form-control" name="description_" id="description_" style="min-width: 100%"></textarea>
+                      </div>
+                    </div>
+                  </div>
+              
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit">Save</button>
+
+              </div></form>
+            </div>
+          </div>
+        </div>
+
+  </div>
+  </div>
+
+</div>
+
+
+<script src='http://fullcalendar.io/js/fullcalendar-2.2.3/lib/moment.min.js'></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.2.3/fullcalendar.min.js'></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+  
+    var validator = $("#ff").validate({
+        rules: {
+            title_: "required",
+            classmanager_: "required",
+            businessunit_: "required"
+        },
+        messages: {
+            title_: "Please specify Event name",
+            classmanager_: "Please specify Class Manager name",
+            businessunit_: "Please specify Business Unit name"
+        }
+    });
+
+    $("button#delete").click(function(){
+
+      $.ajax({
+        type: "POST",
+        url: "/deleteevent",
+        data: { id: $('#id').val()},
+        success: function(msg){
+          $('#calendar').fullCalendar('removeEvents',$('#id').val());
+        },  
+        error: function(){
+        }
+      });
+
+    });
+
+
+    $("button#submit").click(function(){
+
+      var validated = $('#ff').valid();
+      if(validated) {
+        $('#id_').val(new Date().getTime());
+        $.ajax({
+          type: "POST",
+          url: "/saveevent",
+          data: $('#ff').serialize(),
+          success: function(msg){
+            //alert('success');
+            $("#fullCalModal2").modal('hide'); 
+            var newEvent = new Object();
+
+            newEvent.title = $('#title_').val();
+            newEvent.start = $('#start_').val();
+            newEvent.venue = $('#venue_').val();
+            newEvent.classmanager = $('#classmanager_').val();
+            newEvent.businessunit = $('#businessunit_').val();
+            newEvent.description = $('#description_').val();
+            newEvent.id = $('#id_').val();
+
+            newEvent.allDay = true;
+            $('#calendar').fullCalendar('renderEvent', newEvent );
+
+            $('#ff')[0].reset();
+            validator.resetForm();
+          },
+          error: function(){
+            alert("failure");
+            $("#fullCalModal2").modal('hide');
+          }
+        });
+      }   
+    });
+  });
+
+  $(document).ready(function() {
+  // page is now ready, initialize the calendar...
+  // options and github  - http://fullcalendar.io/
+  
+   
+
+  $('#calendar').fullCalendar({
+      
+     
+      dayClick: function(date, jsEvent, view) {
+      //    alert('a day has been clicked!'+new Date(date));
+        $('#fullCalModal2').modal();
+        date = date.toDate();
+        $('#start_').val(moment(date).format('YYYY-MM-DD'));
+        $('#eventdate_').html(moment(date).format('DD MMM YYYY'));
+        $('#businessunit_').val('Hybrid Cloud');
+        return false;
+      },
+
+      events: '/calendardata',
+      eventClick:  function(event, jsEvent, view) {
+
+          $('#modalTitle').html(event.title);
+          $('#venue').html(event.venue);
+          var displaydate = new Date(event.start);
+          $('#start').html(moment(displaydate).format('DD MMM YYYY'));
+          $('#classmanager').html(event.classmanager);
+          $('#businessunit').html(event.businessunit);
+          $('#description').html(event.description);
+          $('#id').val(event.id);
+          $('#fullCalModal').modal();
+          return false;
+      }
+
+    });
+
+  });
+
+
+  </script>
+
+</body>
+</html>
