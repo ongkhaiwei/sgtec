@@ -10,7 +10,7 @@
     "ejs": "2.4.x",
     "cloudant": "1.4.x",
     "body-parser": "1.14.x",
-    "morgan": "1.6.x",
+    "morgan": ">=1.9.1",
     "errorhandler": "1.4.x"
   },
   "repository": {},
